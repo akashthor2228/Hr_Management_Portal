@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4=$(!92nj)s&_yzq404_f7h%&h4-z5_vkpr#dn%3&xh_)-u2@b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -147,3 +147,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'akashthor2228@gmail.com'
 EMAIL_HOST_PASSWORD = 'rscz olal ojqq urwi'  # Use App Password, not your Gmail password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://hr-management-portal-2.onrender.com"
+]
