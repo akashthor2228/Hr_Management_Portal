@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<div class="container mt-4">
+
+
+   <h2 class="text-center text-primary mb-4">Student List</h2>
+
+
+   {% if students %}
+       <table class="table table-bordered table-striped shadow-sm">
+           <thead class="table-dark text-center">
+               <tr>
+                   <th>#</th>
+                   <th>Name</th>
+                   <th>Qualification</th>
+                   <th>Tech Stack</th>
+                   <th>Year of Passing</th>
+                   <th>Mobile</th>
+                   <th>Email</th>
+                   <th>Actions</th>
+               </tr>
+           </thead>
+
+
+           <tbody class="text-center">
+               {% for student in students %}
+               <tr>
+                   <td>{{ forloop.counter }}</td>
+                   <td>{{ student.user.first_name }}</td>
+                   <td>{{ student.qualification }}</td>
+                   <td>{{ student.tech_stack }}</td>
+                   <td>{{ student.year_of_passing }}</td>
+                   <td>{{ student.mobile }}</td>
+                   <td>{{ student.user.email }}</td>
+                   <td>
+                       <a href="{% url 'update_student' student.id %}" class="btn btn-sm btn-warning">Edit</a>
+                       <a href="{% url 'delete_student' student.id %}" class="btn btn-sm btn-danger">Delete</a>
+                   </td>
+               </tr>
+               {% endfor %}
+           </tbody>
+
+
+       </table>
+
+
+   {% else %}
+       <p class="text-center text-danger fw-bold">No students added yet!</p>
+   {% endif %}
+
+
+</div>
+
+
+{% endblock %}

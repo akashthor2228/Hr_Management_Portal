@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">
+        Students Applied for {{ company.company_name }}
+    </h2>
+
+    {% if applied_students %}
+        <table class="table table-bordered table-striped shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Qualification</th>
+                    <th>Tech Stack</th>
+                    <th>Year of Passing</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                {% for item in applied_students %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.student.user.first_name }}</td>
+                    <td>{{ item.student.qualification }}</td>
+                    <td>{{ item.student.tech_stack }}</td>
+                    <td>{{ item.student.year_of_passing }}</td>
+                    <td>{{ item.student.mobile }}</td>
+                    <td>{{ item.student.user.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class="text-center text-danger fw-bold">
+            No students have applied yet for this drive!
+        </p>
+    {% endif %}
+
+    <div class="text-center mt-3">
+        <a href="{% url 'view_company' %}" class="btn btn-secondary">Back</a>
+    </div>
+
+</div>
+
+{% endblock %}

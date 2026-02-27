@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center text-primary mb-4">
+        Company Management
+    </h2>
+
+    <div class="row justify-content-center">
+
+        <!-- Add Company Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-success">Add Company</h4>
+                    <p class="card-text">Create a new company record and add to database.</p>
+                    <a href="{% url 'add_company' %}" class="btn btn-success btn-block">Add Company</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Company Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-info">View Companies</h4>
+                    <p class="card-text">Check all company records and manage them.</p>
+                    <a href="{% url 'view_company' %}" class="btn btn-info btn-block">View Companies</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

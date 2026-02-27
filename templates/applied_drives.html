@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Applied Drives</h2>
+
+    {% if applied_drives %}
+        <table class="table table-bordered table-striped shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Company Name</th>
+                    <th>Job Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                {% for apply in applied_drives %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ apply.company.company_name }}</td>
+                    <td>{{ apply.company.role }}</td>
+
+                    <td>
+                        <span class="badge bg-info text-dark">Applied</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class="text-center text-danger fw-bold">You have not applied to any drives yet!</p>
+    {% endif %}
+</div>
+
+{% endblock %}

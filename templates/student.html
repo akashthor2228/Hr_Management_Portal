@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center text-primary mb-4">
+        Student Management
+    </h2>
+{% if request.user.user_type == 'admin' or request.user.user_type == 'hr' %}
+    <div class="row justify-content-center">
+
+
+        <!-- Add Student Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-success">Add Student</h4>
+                    <p class="card-text">Register a new student into the system.</p>
+                    <a href="{% url 'add_student' %}" class="btn btn-success btn-block">Add Student</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Students Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-info">View Students</h4>
+                    <p class="card-text">Check and manage all registered students.</p>
+                    <a href="{% url 'view_students' %}" class="btn btn-info btn-block">View Students</a>
+                </div>
+            </div>
+        </div>
+{% elif request.user.user_type == 'student' %}
+        <!-- Profile Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-primary">My Profile</h4>
+                    <p class="card-text">Update your personal and academic information.</p>
+                    <a href="{% url 'student_profile' %}" class="btn btn-primary btn-block">Profile</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Drives Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-warning">Available Drives</h4>
+                    <p class="card-text">View active drives and apply for opportunities.</p>
+                    <a href="{% url 'available_drives' %}" class="btn btn-warning btn-block">View Drives</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applied Drives Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-danger">Applied Drives</h4>
+                    <p class="card-text">Track all your job applications and results.</p>
+                    <a href="{% url 'applied_drives' %}" class="btn btn-danger btn-block">Applied Drives</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center text-primary mb-4">Available Drives</h2>
+
+    {% if drives %}
+        <table class="table table-bordered table-striped shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Salary (₹)</th>
+                    <th>Tech Stack</th>
+                    <th>Year of Passing</th>
+                    <th>Apply</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                {% for drive in drives %}
+
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ drive.company_name }}</td>
+                    <td>{{ drive.role }}</td>
+                    <td>{{ drive.salary }}</td>
+                    <td>{{ drive.tech_stack }}</td>
+                    <td>{{ drive.year_of_passing }}</td>
+                    <td>
+    {% if drive.id in applied %}
+        <button class="btn btn-secondary btn-sm" disabled>Applied</button>
+    {% else %}
+        <a href="{% url 'apply_drive' drive.id %}" class="btn btn-success btn-sm">Apply</a>
+    {% endif %}
+</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class="text-center text-danger fw-bold">No drives available for your profile!</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

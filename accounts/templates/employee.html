@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content%}
+
+<div class="container mt-4">
+
+    <h2 class="text-center text-primary mb-4">
+        Employee Management
+    </h2>
+
+    <div class="row justify-content-center">
+
+        <!-- Add Employee Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-success">Add Employee</h4>
+                    <p class="card-text">Create a new employee record and add to database.</p>
+                    <a href="{% url 'add_employee' %}" class="btn btn-success btn-block">Add Employee</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Employee Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg p-3 mb-4 bg-white rounded">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-info">View Employees</h4>
+                    <p class="card-text">Check all employee records and manage them.</p>
+                    <a href="{% url 'view_employee' %}" class="btn btn-info btn-block">View Employees</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

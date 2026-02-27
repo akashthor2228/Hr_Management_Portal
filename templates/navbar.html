@@ -1,0 +1,146 @@
+<style>
+
+/* Navbar container styling */
+.navbar {
+    background: rgba(30, 30, 30, 0.85) !important;
+    border-radius: 10px;
+    padding: 8px 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+/* Navbar brand (WELCOME USER) */
+.navbar-brand.active {
+    background: linear-gradient(135deg, #00d67d, #00a958);
+    color: #fff !important;
+    padding: 14px 15px !important;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Menu items */
+.navbar-nav li a {
+    color: #f1f1f1 !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 18px !important;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Active menu highlight */
+.navbar-nav li.active > a {
+    background: #00b772 !important;
+    color: white !important;
+    border-radius: 8px;
+}
+
+/* Hover effect */
+.navbar-nav li a:hover {
+    background: rgba(0, 255, 150, 0.15);
+    color: #00ff9d !important;
+    transform: translateY(-2px);
+}
+
+/* Logout button */
+.btn-link {
+    font-size: 16px;
+    color: #ff8080 !important;
+    font-weight: 600;
+    transition: 0.3s;
+    border-radius: 8px;
+}
+
+/* Logout hover */
+.btn-link:hover {
+    background: rgba(255, 80, 80, 0.2);
+    color: #ff4444 !important;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+/* Navbar header for better alignment */
+.navbar-header a {
+    margin-right: 15px;
+}
+/* Logout button right aligned */
+.navbar-right .logout-btn {
+    padding: 15px 20px;
+    color: #ff8080 !important;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+/* Hover Effect */
+.navbar-right .logout-btn:hover {
+    background: rgba(255, 80, 80, 0.2);
+    color: #ff4444 !important;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+</style>
+
+
+
+
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- WELCOME USER -->
+        <div class="navbar-header">
+            <a class="navbar-brand active" href="#">
+                welcome
+                {% if request.user.user_type == 'admin' or request.user.user_type == 'hr' %}
+                    {{ request.user.username }}
+                {% else %}
+                    {{ request.user.first_name }}
+                {% endif %}
+                ({{ request.user.user_type }})
+            </a>
+        </div>
+
+        <!-- LEFT SIDE MENUS -->
+        <ul class="nav navbar-nav">
+
+            <li class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                <a href="{% url 'dashboard' %}">Home</a>
+            </li>
+
+            {% if request.user.user_type == 'admin' %}
+                <li class="{% if request.resolver_match.url_name == 'employee_home' %}active{% endif %}">
+                    <a href="{% url 'employee_home' %}">Employee</a>
+                </li>
+
+                <li class="{% if request.resolver_match.url_name == 'company_home' %}active{% endif %}">
+                    <a href="{% url 'company_home' %}">Company</a>
+                </li>
+
+            {% elif request.user.user_type == 'hr' %}
+                <li class="{% if request.resolver_match.url_name == 'company_home' %}active{% endif %}">
+                    <a href="{% url 'company_home' %}">Company</a>
+                </li>
+            {% endif %}
+
+            <li class="{% if request.resolver_match.url_name == 'student_home' %}active{% endif %}">
+                <a href="{% url 'student_home' %}">Student</a>
+            </li>
+
+        </ul>
+
+        <!-- RIGHT SIDE LOGOUT BUTTON -->
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <form action="{% url 'logout' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link logout-btn">Logout</button>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+</nav>

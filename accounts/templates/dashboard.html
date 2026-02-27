@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .feature-box {
+        background: #f8f9fa;
+        border-left: 6px solid #0d6efd;
+        padding: 18px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+    .feature-box:hover {
+        background: #eef3ff;
+    }
+    .role-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.3s;
+    }
+    .role-card:hover {
+        transform: translateY(-5px);
+    }
+    .heading-icon {
+        font-size: 32px;
+        vertical-align: middle;
+        margin-right: 8px;
+    }
+</style>
+
+<div class="container mt-5">
+
+    <h2 class="text-center text-primary fw-bold mb-4">
+        🎓 Campus Recruitment Management System
+    </h2>
+
+    <div class="p-4 feature-box">
+        <p class="fs-5 text-justify">
+            A web-based platform built using <strong>Django</strong> to automate campus hiring
+            between students and companies. It provides separate dashboards for Admin, HR, and Students
+            ensuring fast and efficient placement activities.
+        </p>
+    </div>
+
+    <!-- Key Features -->
+    <h4 class="mt-4 text-secondary fw-bold">
+        <span class="heading-icon">🎯</span>Key Features
+    </h4>
+    <ul class="fs-5 ms-3">
+        <li>User registration and secure role-based login</li>
+        <li>Admin/HR can add, edit, and delete company drives</li>
+        <li>Admin/HR can manage student profiles</li>
+        <li>Students can update qualification, skills, and resume</li>
+        <li>Students can apply only for eligible drives (based on skills / YOP)</li>
+        <li>HR/Admin can track applied students</li>
+        <li>Clean list views with search and filter options</li>
+    </ul>
+
+    <!-- Role Cards -->
+    <h4 class="mt-4 text-secondary fw-bold">
+        <span class="heading-icon">👥</span>User Roles & Permissions
+    </h4>
+
+    <div class="row mt-3">
+        <div class="col-md-4 mb-3">
+            <div class="role-card border-start border-4 border-success">
+                <h5 class="fw-bold text-success">1️⃣ Admin</h5>
+                <ul class="fs-6">
+                    <li>Manage HR and Student users</li>
+                    <li>Add / Update / Delete companies</li>
+                    <li>View all student applications</li>
+                    <li>Complete control over system</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="role-card border-start border-4 border-info">
+                <h5 class="fw-bold text-info">2️⃣ HR</h5>
+                <ul class="fs-6">
+                    <li>Create job drives with required skills</li>
+                    <li>Update and maintain company details</li>
+                    <li>Track applicants for each drive</li>
+                    <li>View all student details</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="role-card border-start border-4 border-primary">
+                <h5 class="fw-bold text-primary">3️⃣ Student</h5>
+                <ul class="fs-6">
+                    <li>Update qualification, skills & resume</li>
+                    <li>View eligible drives only</li>
+                    <li>Apply for preferred company drives</li>
+                    <li>Track application status</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modules -->
+    <h4 class="mt-4 text-secondary fw-bold">
+        <span class="heading-icon">📦</span>Modules in the System
+    </h4>
+    <ul class="fs-5 ms-3">
+        <li><b>Student Management:</b> Profile, skills, resume, applied drives</li>
+        <li><b>Company Management:</b> Drive details like skills, YOP, salary, role</li>
+        <li><b>Application Tracking:</b> Student can apply & HR/Admin can monitor</li>
+    </ul>
+
+    <!-- Technologies -->
+    <h4 class="mt-4 text-secondary fw-bold">
+        <span class="heading-icon">🛠️</span>Technologies Used
+    </h4>
+    <ul class="fs-5 ms-3">
+        <li>Backend: Python, Django</li>
+        <li>Frontend: HTML, CSS, Bootstrap</li>
+        <li>Database: SQLite / PostgreSQL / MySQL</li>
+        <li>Authentication: Django Auth System</li>
+    </ul>
+
+    <div class="alert alert-primary fs-5 mt-4 text-center shadow-sm">
+        This system helps students explore job opportunities and supports companies in finding the best talent efficiently.
+    </div>
+
+</div>
+
+{% endblock %}

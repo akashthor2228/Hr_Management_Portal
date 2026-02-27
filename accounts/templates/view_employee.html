@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+    {% for employee in employees %}
+    <tr>
+        <th scope="row">{{ employee.id }}</th>
+        <td>{{ employee.username }}</td>
+        <td>{{employee.email }}</td>
+        <td><a href="{% url 'update_employee' employee.id %}">Update</a></td>
+        <td><a href="{% url 'delete_employee' employee.id %}">Delete</a></td>
+    </tr>
+    {% endfor%}
+
+</table>
+
+{% endblock %}

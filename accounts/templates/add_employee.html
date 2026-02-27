@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="text-center text-primary">{{ action }} Employee</h2>
+
+<form method="POST" class="mt-4" style="max-width: 400px; margin: auto;">
+    {% csrf_token %}
+
+    <label><b>Name:</b></label>
+    <input type="text" name="username" class="form-control" value="{{ employee.username }}" required><br>
+{% comment %}
+    <label><b>Age:</b></label>
+    <input type="number" name="age" class="form-control" required><br>
+{% endcomment %}
+    <label><b>Email:</b></label>
+    <input type="email" name="email" class="form-control" value="{{ employee.email }}" required><br>
+{% comment %}
+    <label><b>User Type:</b></label>
+    <select name="user_type" class="form-control" required>
+        <option value="">--- Select Type ---</option>
+        <option value="hr">HR</option>
+        <option value="student">Student</option>
+    </select><br>
+{% endcomment %}
+    {% if password %}
+    <label><b>Password:</b></label>
+    <input type="password" name="password" class="form-control" required><br>
+
+    <label><b>Confirm Password:</b></label>
+    <input type="password" name="confirm_password" class="form-control" required><br>
+    {% endif %}
+    <button type="submit" class="btn btn-success btn-block">Submit</button>
+</form>
+
+<p style="color:red;" class="mt-2">{{ error }}</p>
+<p style="color:green;" class="mt-2">{{ success }}</p>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center text-primary mb-4">Company List</h2>
+
+    {% if companies %}
+        <table class="table table-bordered table-striped shadow-sm">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Company Name</th>
+                    <th>Role</th>
+                    <th>Salary (₹)</th>
+                    <th>Tech Stack</th>
+                    <th>Year of Passing</th>
+                    <th>Added By</th>
+                    <th>View Students</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                {% for company in companies %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ company.company_name }}</td>
+                    <td>{{ company.role }}</td>
+                    <td>{{ company.salary }}</td>
+                    <td>{{ company.tech_stack }}</td>
+                    <td>{{ company.year_of_passing }}</td>
+                    <td>{{ company.added_by.username }}</td>
+                    <td>
+                        {% if company.status == 'active' %}
+                            <span class="badge bg-success">Active</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inactive</span>
+                        {% endif %}
+                    </td>
+
+
+                    <td><a href="{% url 'view_applied_students' company.id %}" class="btn btn-sm btn-warning">View Students</a></td>
+                    <td>
+                        <a href="{% url 'update_company' company.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_company' company.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% else %}
+        <p class="text-center text-danger fw-bold">No companies added yet!</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}
